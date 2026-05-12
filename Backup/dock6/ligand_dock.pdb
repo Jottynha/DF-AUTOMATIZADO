@@ -1,0 +1,126 @@
+CRYST1   61.030   61.030   71.289  90.00  90.00 120.00 P 61          1
+HETATM    1  C1  A1JVA 501     -37.296   1.938  -5.650  1.00 16.31      B    C  
+ANISOU    1  C1  A1JVA 501     1928   2555   1714    589    305    464  B    C  
+HETATM    2  C2  A1JVA 501     -37.707   0.737  -4.992  1.00 15.76      B    C  
+ANISOU    2  C2  A1JVA 501     1790   2389   1808    531    321    407  B    C  
+HETATM    3  C3  A1JVA 501     -37.148   0.639  -3.682  1.00 14.60      B    C  
+ANISOU    3  C3  A1JVA 501     1554   2239   1754    403    288    347  B    C  
+HETATM    4  C4  A1JVA 501     -36.309   1.614  -3.179  1.00 15.10      B    C  
+ANISOU    4  C4  A1JVA 501     1661   2202   1874    532    338    348  B    C  
+HETATM    5  N5  A1JVA 501     -35.961   2.731  -3.863  1.00 15.42      B    N  
+ANISOU    5  N5  A1JVA 501     1794   2205   1859    608    392    359  B    N  
+HETATM    6  C6  A1JVA 501     -36.466   2.889  -5.061  1.00 16.41      B    C  
+ANISOU    6  C6  A1JVA 501     1940   2484   1811    759    371    333  B    C  
+HETATM    7  N7  A1JVA 501     -35.927   1.240  -1.922  1.00 15.22      B    N  
+ANISOU    7  N7  A1JVA 501     1711   2237   1834    602    332    343  B    N  
+HETATM    8  N8  A1JVA 501     -36.470   0.035  -1.589  1.00 14.91      B    N  
+ANISOU    8  N8  A1JVA 501     1634   2237   1795    362    208    297  B    N  
+HETATM    9  C9  A1JVA 501     -37.181  -0.396  -2.592  1.00 14.98      B    C  
+ANISOU    9  C9  A1JVA 501     1467   2325   1901    209    247    250  B    C  
+HETATM   10  C10 A1JVA 501     -37.857  -1.605  -2.611  1.00 15.88      B    C  
+ANISOU   10  C10 A1JVA 501     1472   2556   2007   -172     92    193  B    C  
+HETATM   11  N11 A1JVA 501     -37.812  -2.345  -1.480  1.00 17.09      B    N  
+ANISOU   11  N11 A1JVA 501     1645   2695   2153   -254     33    273  B    N  
+HETATM   12  C12 A1JVA 501     -38.419  -3.487  -1.563  1.00 17.69      B    C  
+ANISOU   12  C12 A1JVA 501     1719   2780   2222   -315    -70    225  B    C  
+HETATM   13  C13 A1JVA 501     -39.117  -3.946  -2.672  1.00 18.29      B    C  
+ANISOU   13  C13 A1JVA 501     1751   2898   2301   -510    -12    274  B    C  
+HETATM   14  C14 A1JVA 501     -39.156  -3.091  -3.815  1.00 17.70      B    C  
+ANISOU   14  C14 A1JVA 501     1611   2910   2203   -227    -30    170  B    C  
+HETATM   15  N15 A1JVA 501     -38.506  -1.976  -3.729  1.00 17.22      B    N  
+ANISOU   15  N15 A1JVA 501     1467   2875   2201   -210    103    128  B    N  
+HETATM   16  N16 A1JVA 501     -39.808  -3.584  -4.920  1.00 18.31      B    N  
+ANISOU   16  N16 A1JVA 501     1779   2938   2241    -30    -58    252  B    N  
+HETATM   17  C17 A1JVA 501     -39.866  -2.689  -6.145  1.00 19.28      B    C  
+ANISOU   17  C17 A1JVA 501     1956   3170   2198    266    -10    380  B    C  
+HETATM   18  C18 A1JVA 501     -41.060  -2.960  -7.028  1.00 20.45      B    C  
+ANISOU   18  C18 A1JVA 501     2076   3463   2233    564    -22    172  B    C  
+HETATM   19  C19 A1JVA 501     -40.711  -3.270  -8.531  1.00 20.28      B    C  
+ANISOU   19  C19 A1JVA 501     2181   3299   2226    684     87    285  B    C  
+HETATM   20  C20 A1JVA 501     -39.662  -4.440  -8.778  1.00 20.42      B    C  
+ANISOU   20  C20 A1JVA 501     2193   3290   2274    682    203    413  B    C  
+HETATM   21  C21 A1JVA 501     -38.437  -4.210  -7.860  1.00 19.81      B    C  
+ANISOU   21  C21 A1JVA 501     2151   3113   2263    668    222    480  B    C  
+HETATM   22  C22 A1JVA 501     -38.587  -2.900  -7.075  1.00 19.80      B    C  
+ANISOU   22  C22 A1JVA 501     2096   3243   2185    464    148    604  B    C  
+HETATM   23  C23 A1JVA 501     -38.766  -1.714  -8.049  1.00 20.38      B    C  
+ANISOU   23  C23 A1JVA 501     2220   3374   2150    627    182    543  B    C  
+HETATM   24  C24 A1JVA 501     -39.979  -2.030  -9.046  1.00 20.55      B    C  
+ANISOU   24  C24 A1JVA 501     2285   3374   2150    736    114    453  B    C  
+HETATM   25  C25 A1JVA 501     -39.309  -5.427  -7.631  1.00 20.51      B    C  
+ANISOU   25  C25 A1JVA 501     2190   3257   2344    736    226    472  B    C  
+HETATM   26  C28 A1JVA 501     -42.194  -1.968  -6.986  1.00 21.71      B    C  
+ANISOU   26  C28 A1JVA 501     2173   3797   2279    655   -102    -69  B    C  
+HETATM   27  O29 A1JVA 501     -42.064  -0.890  -6.436  1.00 22.78      B    O  
+ANISOU   27  O29 A1JVA 501     2367   3810   2481    762   -137     84  B    O  
+HETATM   28  O30 A1JVA 501     -43.253  -2.325  -7.623  1.00 22.18      B    O  
+ANISOU   28  O30 A1JVA 501     2113   3992   2322    631   -137   -211  B    O  
+HETATM   29  F31 A1JVA 501     -39.762  -5.103  -2.763  1.00 19.79      B    F  
+ANISOU   29  F31 A1JVA 501     1979   3069   2472   -469   -156    243  B    F  
+HETATM   30  F32 A1JVA 501     -37.780   2.160  -6.877  1.00 17.52      B    F  
+ANISOU   30  F32 A1JVA 501     2203   2581   1874    649    243    569  B    F  
+HETATM   31  H01 A1JVA 501     -38.365  -0.010  -5.435  1.00 15.76      B    H  
+HETATM   32  H02 A1JVA 501     -36.229   3.796  -5.616  1.00 16.41      B    H  
+HETATM   33  H03 A1JVA 501     -35.324   1.783  -1.321  1.00 15.22      B    H  
+HETATM   34  H04 A1JVA 501     -38.378  -4.140  -0.691  1.00 17.69      B    H  
+HETATM   35  H05 A1JVA 501     -40.230  -4.502  -4.917  1.00 18.31      B    H  
+HETATM   36  H06 A1JVA 501     -39.921  -1.678  -5.740  1.00 19.28      B    H  
+HETATM   37  H07 A1JVA 501     -41.428  -3.865  -6.545  1.00 20.45      B    H  
+HETATM   38  H08 A1JVA 501     -41.651  -3.549  -9.006  1.00 20.28      B    H  
+HETATM   39  H09 A1JVA 501     -39.915  -4.615  -9.824  1.00 20.42      B    H  
+HETATM   40  H10 A1JVA 501     -37.351  -4.137  -7.912  1.00 19.81      B    H  
+HETATM   41  H11 A1JVA 501     -37.687  -2.951  -6.462  1.00 19.80      B    H  
+HETATM   42  H12 A1JVA 501     -37.850  -1.569  -8.622  1.00 20.38      B    H  
+HETATM   43  H13 A1JVA 501     -38.984  -0.807  -7.485  1.00 20.38      B    H  
+HETATM   44  H14 A1JVA 501     -40.661  -1.181  -9.089  1.00 20.55      B    H  
+HETATM   45  H15 A1JVA 501     -39.594  -2.218 -10.048  1.00 20.55      B    H  
+HETATM   46  H16 A1JVA 501     -39.128  -6.500  -7.571  1.00 20.51      B    H  
+HETATM   47  H17 A1JVA 501     -39.944  -5.483  -6.747  1.00 20.51      B    H  
+CONECT    1    2    6   30
+CONECT    2    1    3   31
+CONECT    3    2    4    9
+CONECT    4    3    5    7
+CONECT    5    4    6
+CONECT    6    1    5   32
+CONECT    7    4    8   33
+CONECT    8    7    9
+CONECT    9    3    8   10
+CONECT   10    9   11   15
+CONECT   11   10   12
+CONECT   12   11   13   34
+CONECT   13   12   14   29
+CONECT   14   13   15   16
+CONECT   15   10   14
+CONECT   16   14   17   35
+CONECT   17   16   18   22   36
+CONECT   18   17   19   26   37
+CONECT   19   18   20   24   38
+CONECT   20   19   21   25   39
+CONECT   21   20   22   25   40
+CONECT   22   17   21   23   41
+CONECT   23   22   24   42   43
+CONECT   24   19   23   44   45
+CONECT   25   20   21   46   47
+CONECT   26   18   27   28
+CONECT   27   26
+CONECT   28   26
+CONECT   29   13
+CONECT   30    1
+CONECT   31    2
+CONECT   32    6
+CONECT   33    7
+CONECT   34   12
+CONECT   35   16
+CONECT   36   17
+CONECT   37   18
+CONECT   38   19
+CONECT   39   20
+CONECT   40   21
+CONECT   41   22
+CONECT   42   23
+CONECT   43   23
+CONECT   44   24
+CONECT   45   24
+CONECT   46   25
+CONECT   47   25
+END
