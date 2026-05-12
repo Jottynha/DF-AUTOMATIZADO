@@ -113,18 +113,15 @@ def download_structure(pdb_id: str, output_dir: Path) -> Path:
 				remote_errors.append(exc)
 		except URLError as exc:
 			remote_errors.append(exc)
-
 	local_source = find_local_structure_file(pdb_id)
 	if local_source is not None:
 		local_destination = output_dir / "raw" / local_source.name
 		local_destination.parent.mkdir(parents=True, exist_ok=True)
 		shutil.copyfile(local_source, local_destination)
 		return local_destination
-
 	if remote_errors:
 		raise remote_errors[-1]
 	raise FileNotFoundError(f"Não foi possível localizar a estrutura {pdb_id.upper()}")
-
 
 def extract_chain_from_pdb(source_file: Path, chain_id: str, output_dir: Path, pdb_id: str) -> Path:
 	chain_id = chain_id.strip().upper()

@@ -19,3 +19,19 @@ Se quiser informar ligantes específicos:
 python3 src/base.py --pdb-id 9THJ --chain A --output-dir resultados/9thj --ligand-id 9TN
 ```
 
+## Docking
+
+Depois de baixar o receptor e o ligante com `base.py`, você pode executar o docking com `src/docking.py`:
+
+```bash
+python3 src/docking.py --pdb-id 9THJ --chain A --output-dir resultados/9thj --ligand-id A1JV9
+```
+
+### Saídas do docking
+
+- `resultados/9thj/docking/<ligante>/receptor.pdbqt`: receptor preparado para o Vina
+- `resultados/9thj/docking/<ligante>/ligand.pdbqt`: ligante preparado para o Vina
+- `resultados/9thj/docking/<ligante>/config.txt`: configuração usada no Vina
+- `resultados/9thj/docking/<ligante>/out.pdbqt`: poses geradas pelo Vina
+- `resultados/9thj/docking/<ligante>/log.txt`: saída textual da execução
+

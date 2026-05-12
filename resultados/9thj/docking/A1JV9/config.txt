@@ -1,0 +1,16 @@
+receptor = resultados/9thj/docking/A1JV9/receptor.pdbqt
+ligand = resultados/9thj/docking/A1JV9/ligand.pdbqt
+
+center_x = -28.838
+center_y = 2.806
+center_z = -10.941
+
+size_x = 58.088
+size_y = 42.138
+size_z = 44.458
+
+exhaustiveness = 8
+num_modes = 9
+energy_range = 3
+
+out = resultados/9thj/docking/A1JV9/out.pdbqt
