@@ -1,0 +1,5 @@
+check_lice_E> Invalid license key: MODELIRANTE
+Go to https://salilab.org/modeller/ to get a license key,
+and then set the 'license' variable to it in the file
+/usr/lib/modeller10.8/modlib/modeller/config.py
+
