@@ -1,5 +1,4 @@
-# Pipeline de docking apoiado em `src/base.py`. Exemplo:
-# python3 src/docking.py --pdb-id 9THJ --chain A --output-dir resultados/9thj
+# src/docking.py: execução de docking com Vina (preparação e execução)
 
 from __future__ import annotations
 import argparse
@@ -11,8 +10,9 @@ from pathlib import Path
 from typing import Iterable
 try:
 	import base as base_module
-except ImportError:  # pragma: no cover - fallback para execução como módulo
+except ImportError:
 	from . import base as base_module  # type: ignore
+
 
 @dataclass(frozen=True)
 class Box:
@@ -23,14 +23,17 @@ class Box:
 	size_y: float
 	size_z: float
 
+
 def parse_float_or_none(value: str | None) -> float | None:
 	if value is None:
 		return None
 	return float(value)
 
+
 def ensure_executable(command: str) -> None:
 	if shutil.which(command) is None:
 		raise FileNotFoundError(f"Não encontrei o executável `{command}` no PATH")
+
 
 def extract_pdb_coordinates(pdb_file: Path) -> list[tuple[float, float, float]]:
 	coordinates: list[tuple[float, float, float]] = []
@@ -47,6 +50,7 @@ def extract_pdb_coordinates(pdb_file: Path) -> list[tuple[float, float, float]]:
 			coordinates.append((x, y, z))
 	return coordinates
 
+
 def compute_box(receptor_file: Path, padding: float) -> Box:
 	coordinates = extract_pdb_coordinates(receptor_file)
 	if not coordinates:
@@ -61,6 +65,7 @@ def compute_box(receptor_file: Path, padding: float) -> Box:
 	size_y = max(max(y_values) - min(y_values) + padding, 20.0)
 	size_z = max(max(z_values) - min(z_values) + padding, 20.0)
 	return Box(center_x, center_y, center_z, size_x, size_y, size_z)
+
 
 def write_vina_config(config_file: Path, receptor_pdbqt: Path, ligand_pdbqt: Path, box: Box, exhaustiveness: int, num_modes: int, energy_range: int, output_pdbqt: Path) -> None:
 	config_file.parent.mkdir(parents=True, exist_ok=True)
@@ -89,18 +94,12 @@ def write_vina_config(config_file: Path, receptor_pdbqt: Path, ligand_pdbqt: Pat
 		encoding="utf-8",
 	)
 
+
 def run_command(command: list[str], cwd: Path | None = None) -> None:
 	completed = subprocess.run(command, cwd=cwd, check=False, text=True, capture_output=True)
 	if completed.returncode != 0:
-		raise RuntimeError(
-				"\n".join(
-					[
-						f"Comando falhou: {' '.join(command)}",
-						completed.stdout.strip(),
-						completed.stderr.strip(),
-					]
-				)
-		)
+		raise RuntimeError("\n".join([f"Comando falhou: {' '.join(command)}", completed.stdout.strip(), completed.stderr.strip()]))
+
 
 def convert_to_pdbqt(input_file: Path, output_file: Path, obabel_exe: str, input_format: str, output_format: str, extra_args: Iterable[str] = ()) -> None:
 	output_file.parent.mkdir(parents=True, exist_ok=True)
@@ -108,12 +107,15 @@ def convert_to_pdbqt(input_file: Path, output_file: Path, obabel_exe: str, input
 	command.extend(extra_args)
 	run_command(command)
 
+
 def prepare_receptor_pdbqt(receptor_file: Path, output_file: Path, obabel_exe: str) -> None:
 	convert_to_pdbqt(receptor_file, output_file, obabel_exe, "ipdb", "opdbqt", extra_args=("-xr",))
+
 
 def prepare_ligand_pdbqt(ligand_file: Path, output_file: Path, obabel_exe: str) -> None:
 	input_format = f"i{ligand_file.suffix.lstrip('.').lower()}"
 	convert_to_pdbqt(ligand_file, output_file, obabel_exe, input_format, "opdbqt", extra_args=("--partialcharge", "gasteiger"))
+
 
 def resolve_ligands(raw_structure: Path, ligand_ids: Iterable[str] | None, no_auto_ligands: bool) -> list[str]:
 	manual_ligands = base_module.parse_ligand_ids(ligand_ids)
@@ -125,6 +127,7 @@ def resolve_ligands(raw_structure: Path, ligand_ids: Iterable[str] | None, no_au
 		return base_module.detect_ligands_from_mmcif(raw_structure)
 	return base_module.detect_ligands(raw_structure)
 
+
 def resolve_structure(pdb_id: str, chain_id: str, output_dir: Path) -> tuple[Path, Path]:
 	raw_structure = base_module.download_structure(pdb_id, output_dir)
 	if raw_structure.suffix.lower() == ".cif":
@@ -132,6 +135,7 @@ def resolve_structure(pdb_id: str, chain_id: str, output_dir: Path) -> tuple[Pat
 	else:
 		receptor_file = base_module.extract_chain_from_pdb(raw_structure, chain_id, output_dir, pdb_id)
 	return raw_structure, receptor_file
+
 
 def build_parser() -> argparse.ArgumentParser:
 	parser = argparse.ArgumentParser(description="Executa docking do ligante contra a proteína baixada por `base.py`.")
@@ -156,6 +160,7 @@ def build_parser() -> argparse.ArgumentParser:
 	parser.add_argument("--prepare-only", action="store_true", help="Só prepara os arquivos PDBQT e a configuração")
 	return parser
 
+
 def prepare_ligand_sources(output_dir: Path, ligand_ids: list[str], ligand_files: list[str] | None) -> list[tuple[str, Path]]:
 	prepared: list[tuple[str, Path]] = []
 	ligand_dir = output_dir / "ligands"
@@ -174,14 +179,8 @@ def prepare_ligand_sources(output_dir: Path, ligand_ids: list[str], ligand_files
 		prepared.append((path.stem, path))
 	return prepared
 
-def run_docking_for_ligand(
-	label: str,
-	ligand_source: Path,
-	receptor_file: Path,
-	box: Box,
-	args: argparse.Namespace,
-	base_output_dir: Path,
-) -> Path:
+
+def run_docking_for_ligand(label: str, ligand_source: Path, receptor_file: Path, box: Box, args: argparse.Namespace, base_output_dir: Path,) -> Path:
 	ligand_run_dir = base_output_dir / "docking" / label
 	ligand_run_dir.mkdir(parents=True, exist_ok=True)
 	receptor_pdbqt = ligand_run_dir / "receptor.pdbqt"
@@ -194,33 +193,19 @@ def run_docking_for_ligand(
 	write_vina_config(config_file, receptor_pdbqt, ligand_pdbqt, box, args.exhaustiveness, args.num_modes, args.energy_range, output_pdbqt)
 	if args.prepare_only:
 		return ligand_run_dir
-	command = [
-		args.vina_exe,
-		"--config",
-		str(config_file),
-	]
+	command = [args.vina_exe, "--config", str(config_file)]
 	completed = subprocess.run(command, check=False, text=True, capture_output=True)
 	if completed.returncode != 0:
-		raise RuntimeError(
-			"\n".join(
-				[
-					f"Vina falhou para `{label}`",
-					completed.stdout.strip(),
-					completed.stderr.strip(),
-				]
-			)
-		)
+		raise RuntimeError("\n".join([f"Vina falhou para `{label}`", completed.stdout.strip(), completed.stderr.strip()]))
 	if completed.stdout.strip():
 		print(completed.stdout.strip())
 	if completed.stderr.strip():
 		print(completed.stderr.strip(), file=sys.stderr)
-	log_file.write_text(
-		"\n".join(filter(None, [completed.stdout.strip(), completed.stderr.strip()])),
-		encoding="utf-8",
-	)
+	log_file.write_text("\n".join(filter(None, [completed.stdout.strip(), completed.stderr.strip()])), encoding="utf-8")
 	if not output_pdbqt.exists():
 		raise FileNotFoundError(f"Vina terminou sem gerar `{output_pdbqt}`")
 	return ligand_run_dir
+
 
 def main(argv: list[str] | None = None) -> int:
 	parser = build_parser()
@@ -268,6 +253,7 @@ def main(argv: list[str] | None = None) -> int:
 	except Exception as exc:
 		print(f"Erro: {exc}", file=sys.stderr)
 		return 1
+
 
 if __name__ == "__main__":
 	raise SystemExit(main())
