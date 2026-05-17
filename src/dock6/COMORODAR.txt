@@ -1,0 +1,15 @@
+====== PARA EXECUTAR O PIPELINE SEPARADO ======
+1. python scripts/preparar_entradas_dock6.py 9THJ A A1JV9 resultados/entradas_dock6
+2. python scripts/entrega2_redocking_dock6.py 9THJ A A1JV9 resultados/entrega2_dock6_auto \
+  --receptor-ms resultados/entradas_dock6/rec.ms \
+  --receptor-mol2 resultados/entradas_dock6/receptor_fixed.mol2 \
+  --ligand-ref-mol2 resultados/entradas_dock6/ligand_ref.mol2 \
+  --ligand-dock-mol2 resultados/entradas_dock6/ligand_dock.mol2 \
+  --dock6-param-dir /home/jader/dock6/parameters
+
+====== PARA RODAR DE UMA VEZ SÓ ======
+1. python scripts/pipeline_dock6_completo.py 9THJ A A1JV9 resultados/dock6_full \
+  --dock6-param-dir /home/jader/dock6/parameters
+
+
+LEMBRANDO QUE QUANDO FOR RODAR PRECISA TROCAR OS ARGUMENTOS DEPENDENDO DE ONDE SEU DOCK6 ESTÁ INSTALADO
