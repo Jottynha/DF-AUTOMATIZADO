@@ -25,6 +25,10 @@ def main(
     chain_id: str,
     ligand_id: str,
     output_dir: str,
+    tight_box: bool = False,
+    exhaustiveness: int = 12,
+    num_modes: int = 15,
+    energy_range: int = 4,
 ) -> int:
     output_dir = Path(output_dir)
     print(f"\n{'-x-'*20}")
@@ -54,13 +58,16 @@ def main(
         docking.prepare_receptor_pdbqt(receptor_file, receptor_pdbqt, "obabel")
         docking.prepare_ligand_pdbqt(ligand_file, ligand_pdbqt, "obabel")
         print(f"Arquivos PDBQT preparados")
-        box = docking.compute_box(receptor_file, padding=8.0)
+        padding = 4.0 if tight_box else 8.0
+        box = docking.compute_box(receptor_file, padding=padding)
         print(f"Box calculado: center=({box.center_x:.2f}, {box.center_y:.2f}, {box.center_z:.2f})")
+        print(f"Modo tight-box: {'SIM (padding=4.0)' if tight_box else 'NÃO (padding=8.0)'}")
+        print(f"Exaustão: {exhaustiveness}, Modos: {num_modes}, Intervalo energético: {energy_range}")
         config_file = docking_dir / "config.txt"
         output_pdbqt = docking_dir / "out.pdbqt"
         docking.write_vina_config(
             config_file, receptor_pdbqt, ligand_pdbqt, box,
-            exhaustiveness=8, num_modes=9, energy_range=3, output_pdbqt=output_pdbqt
+            exhaustiveness=exhaustiveness, num_modes=num_modes, energy_range=energy_range, output_pdbqt=output_pdbqt
         )
         import subprocess
         completed = subprocess.run(
@@ -130,6 +137,16 @@ if __name__ == "__main__":
     parser.add_argument("pdb_id", help="Identificador PDB (ex: 9THJ)")
     parser.add_argument("chain", help="Cadeia da proteína (ex: A)")
     parser.add_argument("ligand_id", help="ID do ligante cristalográfico (ex: A1JV9)")
-    parser.add_argument("output_dir", help="Diretório de saída")    
+    parser.add_argument("output_dir", help="Diretório de saída")
+    parser.add_argument("--tight-box", action="store_true", help="Usar caixa de docking mais restrita (padding=4.0)")
+    parser.add_argument("--exhaustiveness", type=int, default=12, help="Exaustão de busca do Vina (padrão: 12)")
+    parser.add_argument("--num-modes", type=int, default=15, help="Número de modos retornados (padrão: 15)")
+    parser.add_argument("--energy-range", type=int, default=4, help="Intervalo energético em kcal/mol (padrão: 4)")
     args = parser.parse_args()
-    raise SystemExit(main(args.pdb_id, args.chain, args.ligand_id, args.output_dir))
+    raise SystemExit(main(
+        args.pdb_id, args.chain, args.ligand_id, args.output_dir,
+        tight_box=args.tight_box,
+        exhaustiveness=args.exhaustiveness,
+        num_modes=args.num_modes,
+        energy_range=args.energy_range
+    ))

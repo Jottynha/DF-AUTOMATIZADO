@@ -32,6 +32,62 @@ def parse_pdb_atoms(pdb_file: Path) -> list[tuple[str, AtomCoords]]:
     return atoms
 
 
+def extract_pdbqt_models(pdbqt_file: Path) -> list[str]:
+    """Extrai cada modelo (pose) do arquivo PDBQT como string"""
+    models = []
+    current_model = []
+    with pdbqt_file.open("r", encoding="utf-8", errors="ignore") as f:
+        for line in f:
+            if line.startswith("MODEL"):
+                current_model = []
+            current_model.append(line)
+            if line.startswith("ENDMDL"):
+                models.append("".join(current_model))
+                current_model = []
+    # Se não houver MODEL/ENDMDL, trata todo o arquivo como uma pose
+    if not models and current_model:
+        models = ["".join(current_model)]
+    return models
+
+
+def atoms_from_pdbqt_text(pdbqt_text: str) -> list[tuple[str, AtomCoords]]:
+    """Parse átomos de um texto PDBQT"""
+    atoms: list[tuple[str, AtomCoords]] = []
+    for line in pdbqt_text.split("\n"):
+        if not line.startswith(("ATOM  ", "HETATM")):
+            continue
+        try:
+            atom_name = line[12:16].strip()
+            x = float(line[30:38])
+            y = float(line[38:46])
+            z = float(line[46:54])
+            atoms.append((atom_name, AtomCoords(x, y, z)))
+        except (ValueError, IndexError):
+            continue
+    return atoms
+
+
+def calculate_best_rmsd_from_models(pdbqt_file: Path, ligand_crystal_file: Path) -> float | None:
+    """Calcula o RMSD para cada modelo no PDBQT e retorna o melhor"""
+    try:
+        atoms_crystal = parse_pdb_atoms(ligand_crystal_file)
+        if not atoms_crystal:
+            return None
+        models = extract_pdbqt_models(pdbqt_file)
+        if not models:
+            return None
+        best_rmsd = float("inf")
+        for model_text in models:
+            atoms_docked = atoms_from_pdbqt_text(model_text)
+            if atoms_docked:
+                rmsd = simple_rmsd(atoms_crystal, atoms_docked)
+                if rmsd is not None and rmsd < best_rmsd:
+                    best_rmsd = rmsd
+        return best_rmsd if best_rmsd != float("inf") else None
+    except Exception:
+        return None
+
+
 def extract_score_from_vina_log(log_file: Path) -> float | None:
     with log_file.open("r", encoding="utf-8", errors="ignore") as handle:
         for line in handle:
@@ -107,10 +163,16 @@ def analyze_docking_result(docking_dir: Path, ligand_crystal_file: Path | None =
         if out_pdbqt.exists():
             try:
                 atoms_crystal = parse_pdb_atoms(ligand_crystal_file)
-                atoms_docked = parse_pdb_atoms(out_pdbqt)
                 result["num_atoms_crystal"] = len(atoms_crystal)
-                result["num_atoms_docked"] = len(atoms_docked)
-                result["rmsd"] = simple_rmsd(atoms_crystal, atoms_docked)
+                # Tenta calcular RMSD da melhor pose
+                best_rmsd = calculate_best_rmsd_from_models(out_pdbqt, ligand_crystal_file)
+                if best_rmsd is not None:
+                    result["rmsd"] = best_rmsd
+                else:
+                    # Fallback: calcula só com a primeira pose
+                    atoms_docked = parse_pdb_atoms(out_pdbqt)
+                    result["num_atoms_docked"] = len(atoms_docked)
+                    result["rmsd"] = simple_rmsd(atoms_crystal, atoms_docked)
             except Exception as exc:
                 result["error"] = str(exc)
     return result

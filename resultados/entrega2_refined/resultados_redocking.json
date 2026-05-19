@@ -1,0 +1,9 @@
+[
+  {
+    "docking_dir": "resultados/entrega2_refined/docking/A1JV9",
+    "best_score": -10.64,
+    "rmsd": 4.304910969293438,
+    "num_atoms_docked": null,
+    "num_atoms_crystal": 48
+  }
+]
