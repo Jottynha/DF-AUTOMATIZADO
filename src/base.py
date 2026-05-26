@@ -211,11 +211,49 @@ def format_pdb_atom_name(atom_name: str, element: str) -> str:
 
 def format_pdb_line(record: str, serial: int, atom_name: str, alt_loc: str, res_name: str, chain_id: str, res_seq: str, ins_code: str, x: float, y: float, z: float, occupancy: float, temp_factor: float, element: str,) -> str:
     formatted_atom_name = format_pdb_atom_name(atom_name, element)
-    return (
-        f"{record:<6}{serial:5d} {formatted_atom_name}{alt_loc:1}{res_name:>3} {chain_id:1}"
-        f"{res_seq:>4}{ins_code:1}   {x:8.3f}{y:8.3f}{z:8.3f}{occupancy:6.2f}{temp_factor:6.2f}"
-        f"          {element:>2}\n"
-    )
+    # Build line character by character to ensure correct column positions
+    # PDB format (1-based indexing in comments, 0-based in code):
+    # 1-6: record name (ATOM  or HETATM)
+    # 7-11: atom serial number (right-justified, 5 chars)
+    # 12: blank
+    # 13-16: atom name (4 chars)
+    # 17: alternate location indicator
+    # 18-20: residue name (3 chars, right-justified)
+    # 21: blank
+    # 22: chain identifier
+    # 23-26: residue sequence number (4 chars, right-justified)
+    # 27: insertion code
+    # 28-30: blank (3 spaces)
+    # 31-38: X coordinate (8 chars, right-justified)
+    # 39-46: Y coordinate (8 chars, right-justified)
+    # 47-54: Z coordinate (8 chars, right-justified)
+    # 55-60: occupancy (6 chars, right-justified)
+    # 61-66: temperature factor (6 chars, right-justified)
+    # 67-76: blank (10 spaces)
+    # 77-78: element symbol (2 chars, right-justified)
+    # 79-80: charge
+    parts = [
+        f"{record:<6}",           # 1-6
+        f"{serial:>5d}",          # 7-11
+        " ",                      # 12
+        f"{formatted_atom_name:<4}",  # 13-16
+        f"{alt_loc:1}",           # 17
+        f"{res_name:>3}",         # 18-20
+        " ",                      # 21
+        f"{chain_id:1}",          # 22
+        f"{res_seq:>4}",          # 23-26
+        f"{ins_code:1}",          # 27
+        "   ",                    # 28-30
+        f"{x:>8.3f}",             # 31-38
+        f"{y:>8.3f}",             # 39-46
+        f"{z:>8.3f}",             # 47-54
+        f"{occupancy:>6.2f}",     # 55-60
+        f"{temp_factor:>6.2f}",   # 61-66
+        "          ",             # 67-76
+        f"{element[:2]:>2s}",     # 77-78
+        "  \n",                   # 79-82
+    ]
+    return "".join(parts)
 
 
 def extract_chain_from_mmcif(source_file: Path, chain_id: str, output_dir: Path, pdb_id: str) -> Path:
