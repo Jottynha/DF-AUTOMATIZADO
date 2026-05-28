@@ -100,6 +100,64 @@ Melhor pose: saida/vina_out/best_pose_9thj_A_A1JV9.pdbqt
 RMSD da melhor pose: 3.775 Å
 ```
 
+#### Docking com biblioteca de ligantes
+
+##### Módulo: `src/vina/dock_library.py`
+
+**Função:** baixa ou usa uma biblioteca de ligantes, executa o Vina para cada composto e gera um CSV final com `pubchem_id`, `score`, `rmsd` e `rank`.
+
+**Teste rápido com 5 ligantes do PubChem:**
+
+```bash
+python3 - <<'PY'
+from src.vina.dock_library import dock_library
+
+results = dock_library(
+  pdb_id="9THJ",
+  chain="A",
+  ligand_library="pubchem:2244,2662,3672,5311,3033",
+  output_dir="saida/test_5ligands",
+  vina_exe="vina",
+  ligand_ref="A1JV9",
+)
+
+print(f"Ligantes processados: {len(results)}")
+PY
+```
+
+**Busca por similaridade antes do docking:**
+
+```bash
+python3 - <<'PY'
+from src.vina.dock_library import search_and_dock
+
+results = search_and_dock(
+  pdb_id="9THJ",
+  chain="A",
+  query_smiles="CC(=O)Oc1ccccc1C(=O)O",
+  output_dir="saida/test_search",
+  vina_exe="vina",
+  ligand_ref="A1JV9",
+  threshold=90,
+  max_ligands=5,
+)
+
+for path, score, rmsd in results:
+  print(path.name, score, rmsd)
+PY
+```
+
+**Saída gerada:**
+- `saida/test_5ligands/vina_results_summary.csv` — ranking final dos ligantes
+- `saida/test_5ligands/vina_out/` — poses e saídas do Vina por ligante
+- `saida/test_5ligands/ligands/` — ligantes baixados e convertidos
+
+**CSV final:**
+- `pubchem_id` — CID usado na consulta ao PubChem
+- `score` — melhor afinidade reportada pelo Vina
+- `rmsd` — RMSD da melhor pose contra o ligante de referência
+- `rank` — posição no ranking por score
+
 ---
 
 ### Docking - AutoDock Dock6
