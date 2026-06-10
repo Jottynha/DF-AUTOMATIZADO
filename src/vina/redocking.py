@@ -284,7 +284,13 @@ def preprocess_and_dock(pdb_id: str, chain: str, ligand_id: str, output_dir: str
         str(out_pdbqt),
     ]
     # execute
-    subprocess.run(cmd, check=True)
+    result = subprocess.run(cmd, capture_output=True, text=True, check=True)
+    output = result.stdout
+
+    # escrever saída no arquivo de saída
+    out_pdbqt_txt = out / "vina_out" / f"{pdb_id.lower()}_{chain}_{ligand_id}_out.txt"
+    with out_pdbqt_txt.open("w", encoding="utf-8") as outfh:
+        outfh.write(output)
 
     # parse poses
     poses = _parse_pdbqt_poses(out_pdbqt)
@@ -332,6 +338,7 @@ def preprocess_and_dock(pdb_id: str, chain: str, ligand_id: str, output_dir: str
 
 if __name__ == "__main__":
     import argparse
+    # criando arquivo txt de saida
 
     parser = argparse.ArgumentParser(description="Preprocessa usando `src.base` e executa AutoDock Vina para redocking")
     parser.add_argument("pdb_id")
