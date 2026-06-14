@@ -1,0 +1,26 @@
+{
+  "pdb_id": "9THJ",
+  "chain": "A",
+  "ligand_id": "A1JV9",
+  "output_dir": "resultados/dock6_redocking",
+  "prepared_inputs": {
+    "output_dir": "resultados/dock6_redocking/prepared_inputs",
+    "raw_structure": "resultados/dock6_redocking/prepared_inputs/raw/9thj.cif",
+    "receptor_clean_pdb": "resultados/dock6_redocking/prepared_inputs/receptor_clean.pdb",
+    "receptor_pqr": "resultados/dock6_redocking/prepared_inputs/receptor_pH74.pqr",
+    "receptor_fixed_pdb": "resultados/dock6_redocking/prepared_inputs/receptor_fixed.pdb",
+    "receptor_fixed_mol2": "resultados/dock6_redocking/prepared_inputs/receptor_fixed.mol2",
+    "ligand_ref_pdb": "resultados/dock6_redocking/prepared_inputs/ligand_ref.pdb",
+    "ligand_ref_mol2": "resultados/dock6_redocking/prepared_inputs/ligand_ref.mol2",
+    "ligand_dock_pdb": "resultados/dock6_redocking/prepared_inputs/ligand_dock.pdb",
+    "ligand_dock_mol2": "resultados/dock6_redocking/prepared_inputs/ligand_dock.mol2",
+    "receptor_ms": "resultados/dock6_redocking/prepared_inputs/rec.ms"
+  },
+  "run_dir": "resultados/dock6_redocking/dock6_out/A1JV9",
+  "scored_mol2": "resultados/dock6_redocking/dock6_out/A1JV9/scored.mol2",
+  "dock_out": "resultados/dock6_redocking/dock6_out/A1JV9/dock6.out",
+  "grid_score": -53.600697,
+  "rmsd": 1.7352700814984567,
+  "success": true,
+  "result_json": "resultados/dock6_redocking/dock6_redocking_result.json"
+}

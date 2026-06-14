@@ -1,0 +1,38 @@
+[
+  {
+    "ligand_label": "A1JV9_backup",
+    "ligand_file": "data/test_library/A1JV9_backup.mol2",
+    "run_dir": "resultados/dock6_library_multi/dock6/A1JV9_backup",
+    "scored_mol2": "resultados/dock6_library_multi/dock6/A1JV9_backup/scored.mol2",
+    "dock_out": "resultados/dock6_library_multi/dock6/A1JV9_backup/dock6.out",
+    "grid_score": -59.503586,
+    "rmsd": null,
+    "rank": 1,
+    "status": "ok",
+    "error": null
+  },
+  {
+    "ligand_label": "A1JV9_dock6",
+    "ligand_file": "data/test_library/A1JV9_dock6.mol2",
+    "run_dir": "resultados/dock6_library_multi/dock6/A1JV9_dock6",
+    "scored_mol2": "resultados/dock6_library_multi/dock6/A1JV9_dock6/scored.mol2",
+    "dock_out": "resultados/dock6_library_multi/dock6/A1JV9_dock6/dock6.out",
+    "grid_score": -57.072861,
+    "rmsd": null,
+    "rank": 2,
+    "status": "ok",
+    "error": null
+  },
+  {
+    "ligand_label": "ligand_vina",
+    "ligand_file": "resultados/dock6_library_multi/ligands/ligand_vina.mol2",
+    "run_dir": "resultados/dock6_library_multi/dock6/ligand_vina",
+    "scored_mol2": "resultados/dock6_library_multi/dock6/ligand_vina/scored.mol2",
+    "dock_out": "resultados/dock6_library_multi/dock6/ligand_vina/dock6.out",
+    "grid_score": -48.26104,
+    "rmsd": null,
+    "rank": 3,
+    "status": "ok",
+    "error": null
+  }
+]

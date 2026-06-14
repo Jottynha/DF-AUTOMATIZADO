@@ -1,0 +1,52 @@
+INFO:PDB2PQR v3.7.1: biomolecular structure conversion software.
+INFO:Please cite:  Jurrus E, et al.  Improvements to the APBS biomolecular solvation software suite.  Protein Sci 27 112-128 (2018).
+INFO:Please cite:  Dolinsky TJ, et al.  PDB2PQR: expanding and upgrading automated preparation of biomolecular structures for molecular simulations. Nucleic Acids Res 35 W522-W525 (2007).
+INFO:Checking and transforming input arguments.
+INFO:Loading topology files.
+INFO:Loading molecule: resultados/dock6_redocking/prepared_inputs/receptor_clean.pdb
+INFO:Setting up molecule.
+INFO:Created biomolecule object with 160 residues and 1251 atoms.
+WARNING:Multiple occupancies found: CA in SER A 321.
+WARNING:Multiple occupancies found: CB in SER A 321.
+WARNING:Multiple occupancies found: OG in SER A 321.
+WARNING:Multiple occupancies found in SER A 321. At least one of the instances is being ignored.
+WARNING:Multiple occupancies found: CA in SER A 324.
+WARNING:Multiple occupancies found: CB in SER A 324.
+WARNING:Multiple occupancies found: OG in SER A 324.
+WARNING:Multiple occupancies found in SER A 324. At least one of the instances is being ignored.
+WARNING:Multiple occupancies found: CA in ASN A 348.
+WARNING:Multiple occupancies found: CB in ASN A 348.
+WARNING:Multiple occupancies found: CG in ASN A 348.
+WARNING:Multiple occupancies found: OD1 in ASN A 348.
+WARNING:Multiple occupancies found: ND2 in ASN A 348.
+WARNING:Multiple occupancies found in ASN A 348. At least one of the instances is being ignored.
+WARNING:Multiple occupancies found: CA in LEU A 381.
+WARNING:Multiple occupancies found: CB in LEU A 381.
+WARNING:Multiple occupancies found: CG in LEU A 381.
+WARNING:Multiple occupancies found: CD1 in LEU A 381.
+WARNING:Multiple occupancies found: CD2 in LEU A 381.
+WARNING:Multiple occupancies found in LEU A 381. At least one of the instances is being ignored.
+WARNING:Multiple occupancies found: CA in GLU A 391.
+WARNING:Multiple occupancies found: CB in GLU A 391.
+WARNING:Multiple occupancies found: CG in GLU A 391.
+WARNING:Multiple occupancies found: CD in GLU A 391.
+WARNING:Multiple occupancies found: OE1 in GLU A 391.
+WARNING:Multiple occupancies found: OE2 in GLU A 391.
+WARNING:Multiple occupancies found in GLU A 391. At least one of the instances is being ignored.
+INFO:Setting termini states for biomolecule chains.
+INFO:Loading forcefield.
+INFO:Loading hydrogen topology definitions.
+WARNING:Missing atom OXT in residue MET A 479
+WARNING:Missing atom OXT in residue MET A 479
+INFO:Attempting to repair 1 missing atoms in biomolecule.
+WARNING:Missing atom OXT in residue MET A 479
+INFO:Added atom OXT to residue MET A 479 at coordinates -7.600, -7.694, -11.923
+INFO:Updating disulfide bridges.
+INFO:Debumping biomolecule.
+INFO:Adding hydrogens to biomolecule.
+INFO:Debumping biomolecule (again).
+INFO:Optimizing hydrogen bonds
+INFO:Applying force field to biomolecule states.
+INFO:Regenerating headers.
+INFO:Regenerating PDB lines.
+WARNING:Ignoring 390 header lines in output.

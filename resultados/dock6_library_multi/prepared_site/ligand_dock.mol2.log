@@ -1,0 +1,6 @@
+==============================
+*** Open Babel Warning  in CorrectStereoAtoms
+  Could not correct 2 stereocenter(s) in this molecule (resultados/dock6_library_multi/prepared_site/ligand_dock.pdb)
+  with Atom Ids as follows: 11 14
+Warning: Stereochemistry is wrong, using the distance geometry method instead
+1 molecule converted

@@ -117,7 +117,7 @@ def prepare_ligand_mol2(ligand_file: Path, output_file: Path, obabel_exe: str) -
 
 
 def make_paths(base_output_dir: Path, ligand_label: str) -> Dock6Paths:
-    run_dir = base_output_dir / "dock6" / ligand_label
+    run_dir = base_output_dir / "dock6_out" / ligand_label
 
     return Dock6Paths(
         run_dir=run_dir,

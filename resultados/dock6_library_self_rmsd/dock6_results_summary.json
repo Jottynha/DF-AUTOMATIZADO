@@ -1,0 +1,14 @@
+[
+  {
+    "ligand_label": "ligand_dock",
+    "ligand_file": "resultados/dock6_library_self_rmsd/prepared_site/ligand_dock.mol2",
+    "run_dir": "resultados/dock6_library_self_rmsd/dock6_out/ligand_dock",
+    "scored_mol2": "resultados/dock6_library_self_rmsd/dock6_out/ligand_dock/scored.mol2",
+    "dock_out": "resultados/dock6_library_self_rmsd/dock6_out/ligand_dock/dock6.out",
+    "grid_score": -58.690216,
+    "rmsd": 0.7725245742746992,
+    "rank": 1,
+    "status": "ok",
+    "error": null
+  }
+]

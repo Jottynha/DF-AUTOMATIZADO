@@ -1,15 +1,100 @@
-====== PARA EXECUTAR O PIPELINE SEPARADO ======
-1. python scripts/preparar_entradas_dock6.py 9THJ A A1JV9 resultados/entradas_dock6
-2. python scripts/entrega2_redocking_dock6.py 9THJ A A1JV9 resultados/entrega2_dock6_auto \
-  --receptor-ms resultados/entradas_dock6/rec.ms \
-  --receptor-mol2 resultados/entradas_dock6/receptor_fixed.mol2 \
-  --ligand-ref-mol2 resultados/entradas_dock6/ligand_ref.mol2 \
-  --ligand-dock-mol2 resultados/entradas_dock6/ligand_dock.mol2 \
-  --dock6-param-dir /home/jader/dock6/parameters
+====== COMO RODAR O PIPELINE DOCK6 ======
 
-====== PARA RODAR DE UMA VEZ SÓ ======
-1. python scripts/pipeline_dock6_completo.py 9THJ A A1JV9 resultados/dock6_full \
-  --dock6-param-dir /home/jader/dock6/parameters
+O pipeline principal do DOCK6 agora fica em:
 
+pipeline/dock6_pipeline.py
 
-LEMBRANDO QUE QUANDO FOR RODAR PRECISA TROCAR OS ARGUMENTOS DEPENDENDO DE ONDE SEU DOCK6 ESTÁ INSTALADO
+Ele possui dois modos principais:
+
+1. redocking
+2. library
+
+====== 1. REDOCKING COM DOCK6 ======
+
+Use quando quiser validar o redocking de um ligante cristalográfico.
+
+Comando:
+
+python pipeline/dock6_pipeline.py redocking 9THJ A A1JV9 resultados/dock6_redocking 
+--dock6-param-dir /home/jader/dock6/parameters
+
+|======================================================|
+|----->>>> OBSERVAÇÃO, MUDE SEU DIRETÓRIO QUANDO RODAR |
+|======================================================|
+
+Argumentos:
+
+9THJ  = PDB ID da estrutura
+A     = cadeia da proteína
+A1JV9 = ligante cristalográfico
+resultados/dock6_redocking = diretório de saída
+
+Saídas principais:
+
+resultados/dock6_redocking/dock6_redocking_result.json
+resultados/dock6_redocking/prepared_inputs/
+resultados/dock6_redocking/dock6_out/A1JV9/
+
+O resultado final mostra:
+
+Grid Score DOCK6
+RMSD
+
+====== 2. DOCKING DE BIBLIOTECA COM DOCK6 ======
+
+Use quando quiser testar um ou mais ligantes contra o mesmo sítio ativo.
+
+Exemplo usando o próprio ligante cristalográfico como teste:
+
+python pipeline/dock6_pipeline.py library 9THJ A A1JV9 self resultados/dock6_library_self 
+--dock6-param-dir /home/jader/dock6/parameters 
+
+|======================================================|
+|----->>>> OBSERVAÇÃO, MUDE SEU DIRETÓRIO QUANDO RODAR |
+|======================================================|
+
+Exemplo calculando RMSD contra o ligante de referência:
+
+python pipeline/dock6_pipeline.py library 9THJ A A1JV9 self resultados/dock6_library_self_rmsd 
+--dock6-param-dir /home/jader/dock6/parameters 
+--calculate-rmsd-against-ref
+
+Exemplo usando um arquivo real de ligante:
+
+python pipeline/dock6_pipeline.py library 9THJ A A1JV9 caminho/para/ligante.mol2 resultados/dock6_library_real 
+--dock6-param-dir /home/jader/dock6/parameters
+
+Exemplo usando uma pasta com vários ligantes:
+
+python pipeline/dock6_pipeline.py library 9THJ A A1JV9 data/test_library resultados/dock6_library_multi 
+--dock6-param-dir /home/jader/dock6/parameters
+
+Saídas principais:
+
+resultados/dock6_library_self_rmsd/dock6_results_summary.csv
+resultados/dock6_library_self_rmsd/dock6_results_summary.json
+resultados/dock6_library_self_rmsd/prepared_site/
+resultados/dock6_library_self_rmsd/dock6_out/
+
+====== ORGANIZAÇÃO DAS SAÍDAS ======
+
+A saída do DOCK6 segue a mesma lógica do Vina:
+
+Vina: <saida>/vina_out/
+
+DOCK6: <saida>/dock6_out/
+
+Exemplo:
+
+resultados/dock6_redocking/dock6_out/A1JV9/
+resultados/dock6_library_self_rmsd/dock6_out/ligand_dock/
+
+====== IMPORTANTE ======
+
+O caminho informado em --dock6-param-dir precisa ser ajustado conforme o local onde o DOCK6 está instalado na máquina.
+
+Exemplo usado neste projeto:
+
+--dock6-param-dir /home/jader/dock6/parameters (MeU DIRETÓRIO)
+
+Se o DOCK6 estiver instalado em outro local (O pc de voces), substitua esse caminho pelo caminho correto da pasta parameters.

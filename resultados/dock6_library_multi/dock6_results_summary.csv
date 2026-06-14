@@ -1,0 +1,4 @@
+rank,ligand_label,grid_score,rmsd,status,scored_mol2,dock_out,run_dir,ligand_file,error
+1,A1JV9_backup,-59.503586,,ok,resultados/dock6_library_multi/dock6/A1JV9_backup/scored.mol2,resultados/dock6_library_multi/dock6/A1JV9_backup/dock6.out,resultados/dock6_library_multi/dock6/A1JV9_backup,data/test_library/A1JV9_backup.mol2,
+2,A1JV9_dock6,-57.072861,,ok,resultados/dock6_library_multi/dock6/A1JV9_dock6/scored.mol2,resultados/dock6_library_multi/dock6/A1JV9_dock6/dock6.out,resultados/dock6_library_multi/dock6/A1JV9_dock6,data/test_library/A1JV9_dock6.mol2,
+3,ligand_vina,-48.26104,,ok,resultados/dock6_library_multi/dock6/ligand_vina/scored.mol2,resultados/dock6_library_multi/dock6/ligand_vina/dock6.out,resultados/dock6_library_multi/dock6/ligand_vina,resultados/dock6_library_multi/ligands/ligand_vina.mol2,

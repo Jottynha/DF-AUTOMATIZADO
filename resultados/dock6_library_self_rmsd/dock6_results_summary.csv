@@ -1,0 +1,2 @@
+rank,ligand_label,grid_score,rmsd,status,scored_mol2,dock_out,run_dir,ligand_file,error
+1,ligand_dock,-58.690216,0.7725245742746992,ok,resultados/dock6_library_self_rmsd/dock6_out/ligand_dock/scored.mol2,resultados/dock6_library_self_rmsd/dock6_out/ligand_dock/dock6.out,resultados/dock6_library_self_rmsd/dock6_out/ligand_dock,resultados/dock6_library_self_rmsd/prepared_site/ligand_dock.mol2,

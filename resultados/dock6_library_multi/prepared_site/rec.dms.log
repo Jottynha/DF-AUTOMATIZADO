@@ -1,0 +1,15 @@
+1273 atoms
+	S	10
+	O	235
+	N	225
+	C	803
+Servers initialized
+Neighbors computed
+Probes computed
+Neighbors sent
+Surface computed
+Server request count:
+	localhost	45999
+41220 points	(13110 contact, 28110 reentrant)
+7649.33 sq. A	(2556.66 contact, 5092.67 reentrant)
+5.39 pts/sq.A	(5.13 contact, 5.52 reentrant)

@@ -1,0 +1,13 @@
+{
+  "output_dir": "resultados/dock6_library_multi/prepared_site",
+  "raw_structure": "resultados/dock6_library_multi/prepared_site/raw/9thj.cif",
+  "receptor_clean_pdb": "resultados/dock6_library_multi/prepared_site/receptor_clean.pdb",
+  "receptor_pqr": "resultados/dock6_library_multi/prepared_site/receptor_pH74.pqr",
+  "receptor_fixed_pdb": "resultados/dock6_library_multi/prepared_site/receptor_fixed.pdb",
+  "receptor_fixed_mol2": "resultados/dock6_library_multi/prepared_site/receptor_fixed.mol2",
+  "ligand_ref_pdb": "resultados/dock6_library_multi/prepared_site/ligand_ref.pdb",
+  "ligand_ref_mol2": "resultados/dock6_library_multi/prepared_site/ligand_ref.mol2",
+  "ligand_dock_pdb": "resultados/dock6_library_multi/prepared_site/ligand_dock.pdb",
+  "ligand_dock_mol2": "resultados/dock6_library_multi/prepared_site/ligand_dock.mol2",
+  "receptor_ms": "resultados/dock6_library_multi/prepared_site/rec.ms"
+}

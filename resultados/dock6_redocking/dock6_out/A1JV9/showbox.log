@@ -1,0 +1,7 @@
+automatically construct box to enclose spheres [Y/N]?
+ extra margin to also be enclosed (angstroms)?
+   (this will be added in all 6 directions)
+ sphere file-
+ cluster number-
+ output filename?
+ finished making pdb-format box file
