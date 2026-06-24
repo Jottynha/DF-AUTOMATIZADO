@@ -1,0 +1,5 @@
+# Exemplo de arquivo de CIDs PubChem
+# Um CID por linha ou separados por vírgula
+2244
+2662
+3672

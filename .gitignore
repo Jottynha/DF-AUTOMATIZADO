@@ -1,0 +1,26 @@
+
+# ============================================================
+# Resultados gerados automaticamente - Triagem virtual / Docking
+# ============================================================
+
+# Saídas principais dos pipelines
+resultados/
+
+# Bibliotecas e ligantes gerados automaticamente
+data/vina_same_1000_mol2/
+data/validation_pb2_mol2/
+data/validation_pb2_mol2_only/
+data/dock6_library_pubchem/
+
+# Mapeamentos e manifestos gerados automaticamente
+data/vina_same_1000_mol2_pubchem_mapping.csv
+data/validation_pb2_mol2_pubchem_mapping.csv
+
+# Logs grandes de execução
+*.log
+*.out
+
+# Arquivos temporários de docking/conversão
+*.tmp
+*.bak
+
